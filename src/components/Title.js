@@ -4,15 +4,18 @@ import styled from 'styled-components';
 function Title({title, setTitle}) {
   return (
     <TitleInput 
-      value={title}
-      onChange={setTitle}
-      type="text"
-      placeholder="제목을 입력해주세요."
+    value={title}
+    onChange={setTitle}
+    type="text"
+    placeholder="제목을 입력해주세요."
     />
   )
 }
 
-export default Title;
+export default React.memo(
+  Title,
+  (prevProps, nextProps) => prevProps.title === nextProps.title
+);
 
 const TitleInput = styled.input`
   all: unset;

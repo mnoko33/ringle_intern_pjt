@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 
 function useProblem() {
   const [problems, setProblems] = useState([]);
@@ -12,11 +12,12 @@ function useProblem() {
       { name: '옵션1' },
     ],
   }
-  const addNewProblem = () => {
+  const addNewProblem = useCallback(
+    () => {
     const newProblem = { ...DEFAULT_PROBLEM, id: nextId, options: [{name: '옵션1'}] };
     setNextId(nextId => nextId + 1);
     setProblems(problems => [...problems, newProblem]);
-  }
+  })
 
   const updateProblemTitle = (problemId, newTitle) => {
     setProblems(problems => problems.map(problem => {

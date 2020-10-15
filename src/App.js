@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import './App.css';
 import styled from 'styled-components';
 import Title from './components/Title';
@@ -10,7 +10,8 @@ import useProblem from './hooks/useProblem';
 import useInput from './hooks/useInput';
 
 function App() {
-  const { title, setTitle } = useInput();
+  const [title, setTitle] = useInput();
+
   const { 
     problems, 
     addNewProblem,
@@ -23,7 +24,7 @@ function App() {
     updateProblemType,
   } = useProblem();
 
-  const submitResult = () => {
+  const submitResult = useCallback(() => {
     console.log('설문조사 이름:', title ? title : '제목없는 설문조사');
     problems.forEach(problem => {
       const {title, id, detail, type, options} = problem;
@@ -39,7 +40,7 @@ function App() {
         })
       }
     })
-  }
+  }, [problems])
 
   return (
     <div className="App">

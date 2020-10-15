@@ -9,7 +9,7 @@ function NewButton({addNewProblem}) {
   )
 }
 
-export default NewButton;
+export default React.memo(NewButton);
 
 const Button = styled.button`
   all: unset;

@@ -9,7 +9,7 @@ function SubmitButton({onSubmit}) {
   )
 }
 
-export default SubmitButton;
+export default React.memo(SubmitButton);
 
 const Button = styled.button`
   all: unset;
